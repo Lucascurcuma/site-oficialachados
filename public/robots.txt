@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.achadinhosexpress.store/sitemap.xml
+
+# Prevent indexing of admin and API routes
+Disallow: /admin/
+Disallow: /api/
+
+# Allow indexing of product and category pages
+Allow: /produto/
+Allow: /categoria/
+
+# Prevent indexing of search results
+Disallow: /busca
+
+# Prevent indexing of cart and checkout
+Disallow: /carrinho
+Disallow: /checkout
