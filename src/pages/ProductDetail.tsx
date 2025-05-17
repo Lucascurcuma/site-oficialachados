@@ -16,6 +16,16 @@ const ProductDetail: React.FC = () => {
   const [showCheckoutForm, setShowCheckoutForm] = useState(false);
   const navigate = useNavigate();
 
+  const getProductVideo = (productId: string) => {
+    const videos: { [key: string]: string } = {
+      '1': '4xaOLeHOqVs',  // Melzinho Árabe
+      '3': 'RA735CnOhyI',  // Gel Volumetrão
+      '2': 'PnvMr4WUvQU',  // Rivosex Gel
+      '9': 'pzWhMdfwwE0',  // Tônico MXD20
+    };
+    return videos[productId];
+  };
+
   useEffect(() => {
     const loadProduct = async () => {
       try {
@@ -70,6 +80,7 @@ const ProductDetail: React.FC = () => {
   const selectedPrice = product.variants[selectedVariant].price;
   const selectedQuantity = product.variants[selectedVariant].quantity;
   const discount = Math.round(((product.originalPrice - selectedPrice) / product.originalPrice) * 100);
+  const videoId = getProductVideo(product.id);
 
   const comparisonData = [
     { feature: "Envio Grátis e Rápido", us: true, others: false },
@@ -86,6 +97,21 @@ const ProductDetail: React.FC = () => {
           {/* Left Column - Product Images */}
           <div>
             <Gallery images={[product.images[0]]} productName={product.name} />
+            
+            {/* Video Section */}
+            {videoId && (
+              <div className="mt-6">
+                <div className="relative pt-[56.25%] overflow-hidden rounded-lg">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${videoId}`}
+                    className="absolute top-0 left-0 w-full h-full"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </div>
+            )}
           </div>
           
           {/* Right Column - Product Info */}
