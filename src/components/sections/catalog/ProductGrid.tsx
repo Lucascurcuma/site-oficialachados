@@ -10,7 +10,7 @@ interface ProductGridProps {
 const ProductGrid: React.FC<ProductGridProps> = ({ products, loading = false }) => {
   if (loading) {
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
         {[...Array(6)].map((_, index) => (
           <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden animate-pulse">
             <div className="bg-gray-300 h-48 w-full"></div>
@@ -35,7 +35,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, loading = false }) 
   }
   
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}

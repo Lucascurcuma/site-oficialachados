@@ -15,7 +15,7 @@ const ProductDetail: React.FC = () => {
   const [selectedVariant, setSelectedVariant] = useState(0);
   const [showCheckoutForm, setShowCheckoutForm] = useState(false);
   const [timer, setTimer] = useState(3600); // 1 hour in seconds
-  const [recentBuyers] = useState(12); // Fixed number of recent buyers
+  const [recentBuyers, setRecentBuyers] = useState(0);
   const navigate = useNavigate();
 
   const getProductVideo = (productId: string) => {
@@ -53,8 +53,16 @@ const ProductDetail: React.FC = () => {
       setTimer((prev) => (prev > 0 ? prev - 1 : 0));
     }, 1000);
 
+    // Simulate recent buyers
+    const updateRecentBuyers = () => {
+      setRecentBuyers(Math.floor(Math.random() * (20 - 5 + 1)) + 5);
+    };
+    updateRecentBuyers();
+    const buyersInterval = setInterval(updateRecentBuyers, 30000);
+
     return () => {
       clearInterval(countdownInterval);
+      clearInterval(buyersInterval);
     };
   }, [id, navigate]);
 
@@ -102,7 +110,7 @@ const ProductDetail: React.FC = () => {
   const videoId = getProductVideo(product.id);
   const rating = 4.8;
   const totalReviews = 127;
-  const stockCount = 23; // Fixed stock count
+  const stockCount = Math.floor(Math.random() * (50 - 10 + 1)) + 10;
 
   const reviews = [
     {

@@ -32,13 +32,16 @@ const Filters: React.FC<FiltersProps> = ({ onFilterChange, currentFilters }) => 
     <>
       {/* Category Filter */}
       <div className="mb-6">
-        <div className="flex justify-between items-center mb-3 cursor-pointer" onClick={() => setIsCategoryOpen(!isCategoryOpen)}>
+        <div 
+          className="flex justify-between items-center mb-3 cursor-pointer bg-gray-50 p-3 rounded-lg" 
+          onClick={() => setIsCategoryOpen(!isCategoryOpen)}
+        >
           <h4 className="font-semibold">Categoria</h4>
           {isCategoryOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
         </div>
         
         {isCategoryOpen && (
-          <div className="space-y-2">
+          <div className="space-y-2 px-3">
             <div className="flex items-center">
               <input 
                 type="radio" 
@@ -73,56 +76,7 @@ const Filters: React.FC<FiltersProps> = ({ onFilterChange, currentFilters }) => 
                 onChange={() => handleCategoryChange('estimulantes')}
                 className="mr-2"
               />
-              <label htmlFor="estimulantes">Estimulantes de Energia</label>
-            </div>
-          </div>
-        )}
-      </div>
-      
-      {/* Availability Filter */}
-      <div className="mb-6">
-        <div className="flex justify-between items-center mb-3 cursor-pointer" onClick={() => setIsAvailabilityOpen(!isAvailabilityOpen)}>
-          <h4 className="font-semibold">Disponibilidade</h4>
-          {isAvailabilityOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-        </div>
-        
-        {isAvailabilityOpen && (
-          <div className="space-y-2">
-            <div className="flex items-center">
-              <input 
-                type="radio" 
-                id="all_availability" 
-                name="availability" 
-                value="all" 
-                checked={currentFilters.availability === 'all'} 
-                onChange={() => handleAvailabilityChange('all')}
-                className="mr-2"
-              />
-              <label htmlFor="all_availability">Todos</label>
-            </div>
-            <div className="flex items-center">
-              <input 
-                type="radio" 
-                id="inStock" 
-                name="availability" 
-                value="inStock" 
-                checked={currentFilters.availability === 'inStock'} 
-                onChange={() => handleAvailabilityChange('inStock')}
-                className="mr-2"
-              />
-              <label htmlFor="inStock">Em estoque</label>
-            </div>
-            <div className="flex items-center">
-              <input 
-                type="radio" 
-                id="preOrder" 
-                name="availability" 
-                value="preOrder" 
-                checked={currentFilters.availability === 'preOrder'} 
-                onChange={() => handleAvailabilityChange('preOrder')}
-                className="mr-2"
-              />
-              <label htmlFor="preOrder">Pré-venda</label>
+              <label htmlFor="estimulantes">Estimulantes</label>
             </div>
           </div>
         )}
@@ -130,40 +84,43 @@ const Filters: React.FC<FiltersProps> = ({ onFilterChange, currentFilters }) => 
       
       {/* Price Filter */}
       <div className="mb-6">
-        <div className="flex justify-between items-center mb-3 cursor-pointer" onClick={() => setIsPriceOpen(!isPriceOpen)}>
+        <div 
+          className="flex justify-between items-center mb-3 cursor-pointer bg-gray-50 p-3 rounded-lg"
+          onClick={() => setIsPriceOpen(!isPriceOpen)}
+        >
           <h4 className="font-semibold">Preço</h4>
           {isPriceOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
         </div>
         
         {isPriceOpen && (
-          <div>
+          <div className="px-3">
             <div className="flex justify-between mb-2">
               <span>R$ {currentFilters.priceRange[0]}</span>
               <span>R$ {currentFilters.priceRange[1]}</span>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-4">
               <div>
                 <label htmlFor="minPrice" className="block text-sm mb-1">Mínimo</label>
                 <input 
-                  type="number" 
+                  type="range" 
                   id="minPrice" 
                   min="0" 
                   max={currentFilters.priceRange[1]} 
                   value={currentFilters.priceRange[0]} 
                   onChange={(e) => handlePriceChange(e, 0)}
-                  className="w-full p-2 border border-gray-300 rounded-md"
+                  className="w-full"
                 />
               </div>
               <div>
                 <label htmlFor="maxPrice" className="block text-sm mb-1">Máximo</label>
                 <input 
-                  type="number" 
+                  type="range" 
                   id="maxPrice" 
                   min={currentFilters.priceRange[0]} 
                   max="2000" 
                   value={currentFilters.priceRange[1]} 
                   onChange={(e) => handlePriceChange(e, 1)}
-                  className="w-full p-2 border border-gray-300 rounded-md"
+                  className="w-full"
                 />
               </div>
             </div>
@@ -172,7 +129,7 @@ const Filters: React.FC<FiltersProps> = ({ onFilterChange, currentFilters }) => 
       </div>
       
       <button 
-        className="w-full bg-[#002f6c] text-white py-2 rounded-md hover:bg-[#001f4c] transition-colors"
+        className="w-full bg-[#002f6c] text-white py-3 rounded-lg hover:bg-[#001f4c] transition-colors"
         onClick={() => {
           onFilterChange(currentFilters);
           setIsMobileFiltersOpen(false);
@@ -194,15 +151,22 @@ const Filters: React.FC<FiltersProps> = ({ onFilterChange, currentFilters }) => 
       </button>
 
       {/* Mobile Filters Drawer */}
-      <div className={`md:hidden fixed inset-0 bg-black bg-opacity-50 z-50 transition-opacity duration-300 ${isMobileFiltersOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-        <div className={`fixed inset-y-0 right-0 max-w-xs w-full bg-white transform transition-transform duration-300 ${isMobileFiltersOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div className={`md:hidden fixed inset-0 bg-black bg-opacity-50 z-50 transition-opacity duration-300 ${
+        isMobileFiltersOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+      }`}>
+        <div className={`fixed inset-y-0 right-0 max-w-xs w-full bg-white transform transition-transform duration-300 ${
+          isMobileFiltersOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}>
           <div className="p-4">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-6">
               <h3 className="text-lg font-bold flex items-center">
                 <Filter size={20} className="mr-2" />
                 Filtros
               </h3>
-              <button onClick={() => setIsMobileFiltersOpen(false)}>
+              <button 
+                onClick={() => setIsMobileFiltersOpen(false)}
+                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              >
                 <X size={24} />
               </button>
             </div>
@@ -213,7 +177,7 @@ const Filters: React.FC<FiltersProps> = ({ onFilterChange, currentFilters }) => 
 
       {/* Desktop Filters */}
       <div className="hidden md:block bg-white rounded-lg shadow-md p-5">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-6">
           <h3 className="text-lg font-bold flex items-center">
             <Filter size={20} className="mr-2" />
             Filtros
