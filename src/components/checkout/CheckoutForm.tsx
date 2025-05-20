@@ -169,7 +169,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose, product, selectedV
 
     try {
       const res = await fetch(
-        'https://43de-2804-7f0-bec3-1649-217c-cecc-85af-35e0.ngrok-free.app/webhook/webhookexpress',
+        'https://43de-2804-7f0-bec3-1649-217c-cecc-85af-35e0.ngrok-free.app/webhook-test/webhookexpress',
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -177,8 +177,8 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose, product, selectedV
         }
       );
       if (!res.ok) throw new Error('Erro ao enviar pedido');
-    
-      alert('✅ Pedido enviado com sucesso!'); // <-- sinal de OK
+
+      alert('✅ Pedido enviado com sucesso!');
       setShowSuccessPopup(true);
       setTimeout(() => {
         setShowSuccessPopup(false);
@@ -189,14 +189,14 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose, product, selectedV
     } finally {
       setIsSubmitting(false);
     }
-    
+  };
 
   const handleClose = () => {
     setIsVisible(false);
     setTimeout(onClose, 300);
   };
 
-  const remainingStock = 5;
+  const remainingStock = 23;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">

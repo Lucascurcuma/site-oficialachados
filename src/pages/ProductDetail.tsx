@@ -20,7 +20,7 @@ const ProductDetail: React.FC = () => {
 
   const getProductVideo = (productId: string) => {
     const videos: { [key: string]: string } = {
-      '1': 'MCy7H8ur-Tk',  // Melzinho Árabe
+      '1': 'R3I-OZebwYw',  // Melzinho Árabe
       '3': 'RA735CnOhyI',  // Gel Volumetrão
       '4': 'KdhKp53wxAU',  // Progressiva Vegetal
       '5': 'WoNtJ_Nb9K8',  // Mounja Fit Black
