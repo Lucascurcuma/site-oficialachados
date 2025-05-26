@@ -1,48 +1,45 @@
-export interface Product {
-  id: string;
+export interface FormData {
   name: string;
-  price: number;
-  originalPrice?: number;
+  phone: string;
+  cep: string;
+  address: string;
+  number: string;
+  reference: string;
+  state: string;
+  city: string;
+  deliveryDate: string;
+}
+
+export interface DeliveryDate {
+  value: string;
+  label: string;
+}
+
+export interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+  modalType?: 'standard' | 'confirmation';
+}
+
+export interface FeatureCardProps {
+  icon: string;
+  title: string;
   description: string;
-  images: string[];
-  category: CategoryType;
-  rating: number;
-  numReviews: number;
-  stockCount: number;
-  details: string;
-  usage?: string;
-  benefits: string[];
 }
 
-export interface ProductVariant {
-  quantity: number;
-  price: number;
-  link: string;
+export interface TestimonialProps {
+  text: string;
+  author: string;
 }
 
-export interface ProductWithVariants extends Product {
-  variants: ProductVariant[];
-}
-
-export type CategoryType = 'saude-beleza' | 'dia-a-dia' | 'estimulantes';
-
-export interface Category {
-  id: CategoryType;
-  name: string;
+export interface StepCardProps {
+  number: string;
+  title: string;
   description: string;
-  image: string;
 }
 
-export interface CartItem {
-  product: Product;
-  quantity: number;
-  variant?: ProductVariant;
-}
-
-export interface Review {
-  id: string;
-  userName: string;
-  rating: number;
-  comment: string;
-  date: string;
+export interface BenefitCardProps {
+  icon: string;
+  text: string;
 }
